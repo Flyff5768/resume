@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "mybase.html" %}
+
+{% block content %}
+<body background="{{ url_for('static', filename='images/home/slider-bg.png') }}">
+
+<!--content-->
+<div class="{{ 'container' }}">
+            <div class="{{ 'row' }}">
+                <div class="{{ 'col-sm-12 overflow' }}">
+                   <div class="{{ 'social-icons pull-right' }}">
+                        <ul class="{{ 'nav nav-pills' }}">
+                            <li><a href=""><i class="{{ 'fa fa-facebook' }}"></i></a></li>
+                            <li><a href=""><i class="{{ 'fa fa-twitter' }}"></i></a></li>
+                            <li><a href=""><i class="{{ 'fa fa-google-plus' }}"></i></a></li>
+                            <li><a href=""><i class="{{ 'fa fa-dribbble' }}"></i></a></li>
+                            <li><a href=""><i class="{{ 'fa fa-linkedin' }}"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+             </div>
+</div>
+
+<div>
+  <table align="center" width="80%">
+    <tbody>
+      <tr>
+        <td align="ceter" valign="top">
+            <p>　</p>
+            <h1 class="title">旅遊推薦系統</h1>
+            <p>　</p>
+            <h4><p>您只需上傳照片</p>
+                <p>就能幫您找出您適合的景點</p>
+                <p>並提供理想的旅遊規劃</h4>
+        </td>
+
+        <td>
+            <img src ="{{ url_for('static', filename='house.png') }}">
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>　</p>
+<!--footer-->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center bottom-separator">
+                    <img src="images/home/under.png" class="img-responsive inline" alt="">
+                </div>
+
+                <br>
+                <div class="col-sm-12">
+                    <div class="copyright-text text-center">
+                        <p>&copy; TibaMe x 資策會中壢中心 2020. All Rights Reserved.</p>
+                        <p>Designed by Spedes Group</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+{% endblock %}
+
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "mybase.html" %}
+
+{% block content %}
+
+<p></p>
+<p></p>
+
+<!--route recommand-->
+<div class="container">
+    <br>
+    <h2>熱門景點</h2>
+        <p>　</p>
+        <div class="dropdown">
+            <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                請選擇地區
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/keelung_hot">基隆</a>
+                    <a class="dropdown-item" href="/taipei_hot">台北</a>
+                    <a class="dropdown-item" href="/new_taipei_hot">新北</a>
+                    <a class="dropdown-item" href="/taoyuan_hot">桃園</a>
+                    <a class="dropdown-item" href="/hsinchu_hot">新竹</a>
+                    <a class="dropdown-item" href="/yilan_hot">宜蘭</a>
+                </div>
+        </div>
+        <br>
+
+
+    <table class="table table-hover" align="center" width="50" -md>
+        <thead class="thead-dark">
+        <tr>
+            <th>{{ catogory }} 熱門景點</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for place_each in place_list %}
+        <tr>
+            <th>{{ place_each }}</th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!--footer-->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center bottom-separator">
+                    <img src="images/home/under.png" class="img-responsive inline" alt="">
+                </div>
+
+                <br>
+                <div class="col-sm-12">
+                    <div class="copyright-text text-center">
+                        <p>&copy; TibaMe x 資策會中壢中心 2020. All Rights Reserved.</p>
+                        <p>Designed by Spedes Group</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+{% endblock %}

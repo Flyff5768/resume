@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "mybase.html" %}
+
+{% block content %}
+
+<p></p>
+<p></p>
+<!--content-->
+<div>
+  <table align="center" width="60%">
+      <tbody>
+      <tr>
+          <td align="ceter" valign="top">
+              <div>
+                  <h1>上傳確認<br>
+                      請確認上傳照片~~~</h1><br>
+                  {% for name in filenames %}
+                  <img src="{{ url_for('static', filename= name ) }}" class="float-left" alt="Paris" width="304" height="236">
+                  {% endfor %}
+              </div>
+          </td>
+      </tr>
+      <p>　</p>
+      <tr>
+          <td align="center">
+              <br><br><a href="/travel_plan" class="btn btn-primary" role="button">確認上傳</a>
+          </td>
+      </tr>
+      </tbody>
+  </table>
+</div>
+
+<p>　</p>
+<!--footer-->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center bottom-separator">
+                    <img src="images/home/under.png" class="img-responsive inline" alt="">
+                </div>
+                <br>
+                <div class="col-sm-12">
+                    <div class="copyright-text text-center">
+                        <p>&copy; TibaMe x 資策會中壢中心 2020. All Rights Reserved.</p>
+                        <p>Designed by Spedes Group</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+{% endblock %}

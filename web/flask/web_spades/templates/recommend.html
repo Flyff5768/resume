@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "mybase.html" %}
+
+{% block content %}
+
+<p></p>
+<p></p>
+
+<div class="container">
+  <h3>出發地點：{{ start_place_list.0 }}<br>
+      出發日期：{{ basic_data.get('出發日期') }}<br>
+      旅遊天數：{{ basic_data.get('旅遊天數') }}<br>
+      {{ travel_suggest }}
+  </h3>
+</div>
+<!--route recommand-->
+<div class="container">
+    <h2>路徑規劃結果</h2>
+    <table class="table table-hover">
+        <p></p>
+        <thead class="thead-dark">
+        <tr>
+            <th>出發</th>
+            <th>到達</th>
+            <th>交通時間</th>
+            <th>距離</th>
+            <th>停留時間</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for place_each in final_list %}
+        <tr>
+            <th>{{ place_each.get('出發') }}</th>
+            <th>{{ place_each.get('到達') }}</th>
+            <th>{{ place_each.get('交通時間') }}</th>
+            <th>{{ place_each.get('距離') }}</th>
+            <th>{{ place_each.get('停留時間') }}</th>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!--weather-->
+<div class="container">
+    <h2>天氣預測</h2>
+    <table class="table table-hover">
+        <p></p>
+        <thead class="thead-dark">
+        <tr>
+            <th>地區</th>
+            <th>最高溫</th>
+            <th>最低溫</th>
+            <th>降雨機率</th>
+            <th>舒適度</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr>
+            <th>{{weather_dict.get('地區')}}</th>
+            <th>{{weather_dict.get('最高溫')}} °C</th>
+            <th>{{weather_dict.get('最低溫')}} °C</th>
+            <th>{{weather_dict.get('降雨機率')}} %</th>
+            <th>{{weather_dict.get('舒適度')}}</th>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<!--footer-->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center bottom-separator">
+                    <img src="images/home/under.png" class="img-responsive inline" alt="">
+                </div>
+
+                <br>
+                <div class="col-sm-12">
+                    <div class="copyright-text text-center">
+                        <p>&copy; TibaMe x 資策會中壢中心 2020. All Rights Reserved.</p>
+                        <p>Designed by Spedes Group</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+{% endblock %}

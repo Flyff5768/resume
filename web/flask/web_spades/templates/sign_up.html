@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "mybase.html" %}
+
+{% block content %}
+<p></p>
+<p></p>
+<!--register-->
+<div>
+
+    <table align="center" width="20%">
+    <tbody>
+      <tr>
+        <td align="ceter" valign="top">
+            <div>
+            <h1>會員註冊</h1>
+                <br>
+                <form action="/action_number.php">
+                <div class="form-group">● 帳號：
+                    <input type="text" id="usr" name="username" class="form-control">
+                </div>
+                <div class="form-group">● 密碼：
+                    <input type="password" id="pwd" name="password" class="form-control">
+                </div>
+                <div class="form-group">● Email：
+                    <input type="email" id="mail" name="email" class="form-control">
+                </div>
+                <div class="form-group">● 請問您一年旅遊幾次：<br>
+                    <input type="radio" name="times" value="0" placeholder="option1">0次<br>
+                    <input type="radio" name="times" value="1" placeholder="option2">1~3次<br>
+                    <input type="radio" name="times" value="2" placeholder="option3">4~5次<br>
+                    <input type="radio" name="times" value="3" placeholder="option4">6次以上<br>
+                </div>
+                    <br>
+                <button type="submit" class="btn btn-primary">送出</button>
+                </form>
+            </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>　</p>
+<!--footer-->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center bottom-separator">
+                    <img src="images/home/under.png" class="img-responsive inline" alt="">
+                </div>
+
+                <br>
+                <div class="col-sm-12">
+                    <div class="copyright-text text-center">
+                        <p>&copy; TibaMe x 資策會中壢中心 2020. All Rights Reserved.</p>
+                        <p>Designed by Spedes Group</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+{% endblock %}

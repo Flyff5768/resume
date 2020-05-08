@@ -1,0 +1,64 @@
+{% extends "bootstrap/base.html" %}
+
+{% block head %}
+{{ super() }}
+<div class="{{ 'container' }}">
+    <div class="{{ 'row' }}">
+        <div class="{{ 'col-sm-12 overflow' }}">
+           <div class="{{ 'social-icons pull-right' }}">
+                <ul class="{{ 'nav nav-pills' }}">
+                    <li><a href=""><i class="{{ 'fa fa-facebook' }}"></i></a></li>
+                    <li><a href=""><i class="{{ 'fa fa-twitter' }}"></i></a></li>
+                    <li><a href=""><i class="{{ 'fa fa-google-plus' }}"></i></a></li>
+                    <li><a href=""><i class="{{ 'fa fa-dribbble' }}"></i></a></li>
+                    <li><a href=""><i class="{{ 'fa fa-linkedin' }}"></i></a></li>
+                </ul>
+            </div>
+        </div>
+     </div>
+</div>
+{% endblock %}
+
+{% block title %}旅遊推薦系統{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <img href="/" class="navbar-brand" width="50" height="50" src="{{ url_for('static', filename='spades_shortcut.png') }}">
+
+  <!-- Toggler/collapsibe Button -->
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">首頁</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">會員專區</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ 'sign_up' }}">會員註冊</a>
+                        <a class="dropdown-item" href="{{ 'sign_in' }}">會員登入</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">景點推薦</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ 'action_number.php' }}">上傳圖片</a>
+                        <a class="dropdown-item" href="{{ 'hot_pot' }}">熱門景點</a>
+                        <a class="dropdown-item" href="{{ 'catogory' }}">類別推薦</a>
+                        <a class="dropdown-item" href="{{ 'keyword' }}">關鍵字查詢</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ 'aboutus' }}">關於黑桃</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% block page_content %} {% endblock %}
+    </div>
+{% endblock %}

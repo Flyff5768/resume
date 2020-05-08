@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "mybase.html" %}
+
+{% block content %}
+
+<p></p>
+<p></p>
+<div class="form-group">
+    <table align="center" width="40%" valign="top">
+        <tr>
+            <td><H1><b>上傳照片</b><br></H1></td>
+        </tr>
+             <td><H1>Hi~ {{ username }}<br>
+                請上傳喜歡的照片(最少1張，最多4張)</H1></td>
+        </tr>
+    </table>
+</div>
+<br>
+<div>
+    <table align="center" width="30%" valign="top">
+        <tr>
+            <td>
+                <div class="container">
+                <div>
+            <form action="upload" method="post" enctype="multipart/form-data">
+                <p>請輸入出發日期~~</p>
+                <input type="text" class="span3" id="usr1" name="userdate">
+                <br>
+                <p>請輸入出發地點~~</p>
+                <input type="text" class="span3" id="usr2" name="usergo">
+                <br>
+                <br>
+                <p>請上傳喜歡的景點~~</p>
+                <input type="file" multiple="" name="place" class="span3"><br>
+                <br>
+                <p>請上傳喜歡的食物~~</p>
+                <input type="file" multiple="" name="food" class="span3"><br><br>
+                <button type="submit" class="btn btn-primary">確認送出</button>
+            </form></div></div>
+            </td>
+        </tr>
+                </table>
+</div>
+<br><br>
+
+<!--footer-->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center bottom-separator">
+                    <img src="images/home/under.png" class="img-responsive inline" alt="">
+                </div>
+
+                <br>
+                <div class="col-sm-12">
+                    <div class="copyright-text text-center">
+                        <p>&copy; TibaMe x 資策會中壢中心 2020. All Rights Reserved.</p>
+                        <p>Designed by Spedes Group</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lightbox.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+{% endblock %}
