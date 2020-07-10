@@ -1,0 +1,189 @@
+version: '3'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongodb
+    command: --serviceExecutor adaptive
+    expose:
+      - "27017"
+    ports:
+      - 27017:27017
+    volumes:
+      - /home/admin/spades/mongouse/data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    networks:
+      spades_network:
+        ipv4_address: 172.28.0.2
+
+  mongo-express:
+    depends_on:
+      - mongo
+    image: mongo-express
+    restart: always
+    container_name: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+    networks:
+      spades_network:
+        ipv4_address: 172.28.0.3
+      
+  mysql:
+    image: mysql:8.0
+    restart: always
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    expose:
+      - "3306"
+    ports:
+      - 3306:3306
+    volumes:
+      - /home/admin/spades/mysqluse/my.cnf:/etc/mysql/my.cnf
+      - /home/admin/spades/mysqluse/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: 'spades'
+      MYSQL_USER: 'admin'
+      MYSQL_PASS: 'admin'
+    networks:
+      spades_network:
+        ipv4_address: 172.28.0.4
+        
+  mysql-adminer:
+    depends_on:
+      - mysql
+    image: adminer
+    restart: always
+    container_name: mysql-adminer
+    ports:
+      - 8080:8080
+    networks:
+      spades_network:
+        ipv4_address: 172.28.0.5
+        
+  #python_mysql:
+  #  depends_on:
+  #    - mongo
+  #    - mongo-express
+  #    - mysql-adminer
+  #    - mysql
+  #  image: flyff5678/crawler_sql_mongo_flask:v1
+  #  volumes:
+  #   - /home/admin/spades/rawdata:/rawdata
+  #    - /home/admin/spades/code:/code
+  #  command:     
+  #    python /code/db_mysql_docker.py
+  #  networks:
+  #    spades_network:
+  #      ipv4_address: 172.28.0.6
+  
+  #python_mongo:
+  #  depends_on:
+  #    - mongo
+  #    - mongo-express
+  #    - mysql-adminer
+  #    - mysql
+  #  image: flyff5678/crawler_sql_mongo_flask:v1
+  #  volumes:
+  #    - /home/admin/spades/rawdata:/rawdata
+  #    - /home/admin/spades/code:/code
+  #  command:
+  #    python /code/db_mongodb_docker.py
+  #  networks:
+  #    spades_network:
+  #      ipv4_address: 172.28.0.7
+  
+  #python_crawler:
+  #  depends_on:
+  #    - mongo
+  #    - mongo-express
+  #    - mysql-adminer
+  #    - mysql
+  #  image: flyff5678/crawler_sql_mongo_flask:v1
+  #  volumes:
+  #    - /home/admin/spades/rawdata:/rawdata
+  #    - /home/admin/spades/code:/code
+  #  command:
+  #    python /code/crawler_docker.py
+  #  networks:
+  #    spades_network:
+  #      ipv4_address: 172.28.0.8
+  
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.6.2
+    container_name: elasticsearch
+    hostname: elasticsearch
+    restart: always
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /home/admin/spades/esuse/esdata01:/usr/share/elasticsearch/data
+    expose:
+      - "9200"
+    ports:
+      - 9200:9200
+    networks:
+      spades_network:
+        ipv4_address: 172.28.0.9
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:7.6.2
+    restart: always
+    container_name: kibana
+    hostname: kibana
+    environment:
+      SERVER_NAME: kibana_server
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
+    networks:
+      spades_network:
+        ipv4_address: 172.28.0.10
+        
+  python_flask:
+    depends_on:
+      - mongo
+      - mysql
+      - elasticsearch
+    image: flyff5678/crawler_sql_mongo_flask_model_selenium_snowmlp:v2
+    restart: always
+    #build:
+    #  context: ./
+    container_name: flask
+    volumes:
+      - /home/admin/spades/code:/code
+    command:
+      python /code/flask/web_spades/flask_spades.py -docker True
+    ports:
+      - 5000:5000
+      - 4444:4444
+    networks:
+      spades_network:
+        ipv4_address: 172.28.0.11
+        
+  
+
+      
+networks:
+  spades_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16   
+  
+  
+  
